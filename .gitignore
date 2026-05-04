@@ -1,4 +1,5 @@
 # Docker
+# Docker
 .env
 *.log
 docker-compose.override.yml
@@ -24,7 +25,14 @@ Thumbs.db
 
 # Temp files
 <<<<<<< HEAD
+<<<<<<< HEAD
 .tmp/
 =======
+.tmp/
+>>>>>>> develop
+=======
+.tmp/
+
+# Temp files
 .tmp/
 >>>>>>> develop

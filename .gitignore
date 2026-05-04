@@ -1,4 +1,5 @@
 # Docker
+# Docker
 .env
 *.log
 docker-compose.override.yml
@@ -17,6 +18,9 @@ liquibase.properties.*
 # OS
 .DS_Store
 Thumbs.db
+
+# Temp files
+.tmp/
 
 # Temp files
 .tmp/

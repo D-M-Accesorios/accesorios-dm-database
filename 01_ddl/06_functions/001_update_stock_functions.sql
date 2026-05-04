@@ -5,7 +5,8 @@
 
 -- Función: Actualizar stock cuando se inserta un movimiento
 CREATE OR REPLACE FUNCTION inventario.f_update_stock_on_insert()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER AS
+$$
 BEGIN
     UPDATE catalogo.producto
     SET stock = stock + NEW.cantidad
@@ -13,13 +14,13 @@ BEGIN
     
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
-
-COMMENT ON FUNCTION inventario.f_update_stock_on_insert() IS 'Trigger: actualiza stock al insertar movimiento';
+$$
+LANGUAGE plpgsql;
 
 -- Función: Actualizar stock cuando se actualiza un movimiento
 CREATE OR REPLACE FUNCTION inventario.f_update_stock_on_update()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER AS
+$$
 BEGIN
     UPDATE catalogo.producto
     SET stock = stock - OLD.cantidad + NEW.cantidad
@@ -27,13 +28,13 @@ BEGIN
     
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
-
-COMMENT ON FUNCTION inventario.f_update_stock_on_update() IS 'Trigger: actualiza stock al modificar movimiento';
+$$
+LANGUAGE plpgsql;
 
 -- Función: Revertir stock cuando se elimina un movimiento
 CREATE OR REPLACE FUNCTION inventario.f_revert_stock_on_delete()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER AS
+$$
 BEGIN
     UPDATE catalogo.producto
     SET stock = stock - OLD.cantidad
@@ -41,6 +42,5 @@ BEGIN
     
     RETURN OLD;
 END;
-$$ LANGUAGE plpgsql;
-
-COMMENT ON FUNCTION inventario.f_revert_stock_on_delete() IS 'Trigger: revierte stock al eliminar movimiento';
+$$
+LANGUAGE plpgsql;

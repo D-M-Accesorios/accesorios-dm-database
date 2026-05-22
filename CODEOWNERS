@@ -1,0 +1,32 @@
+# CODEOWNERS — accesorios-dm-database
+#
+# IMPORTANTE: Crear los equipos en GitHub antes de activar require_code_owner_reviews:
+#   - @D-M-Accesorios/leads      → arquitectos / tech leads
+#   - @D-M-Accesorios/dba        → responsables de base de datos
+#
+# Todas las migraciones requieren aprobación explícita del lead o DBA.
+
+# Propietario por defecto — TODA migración requiere revisión de leads
+*                                   @D-M-Accesorios/leads
+
+# Infraestructura Docker
+docker/                             @D-M-Accesorios/leads
+docker-compose.prod.yml             @D-M-Accesorios/leads
+
+# Workflows CI/CD
+.github/                            @D-M-Accesorios/leads
+
+# Changelog master — cambiar el orden de ejecución es destructivo
+changelog-master.yaml               @D-M-Accesorios/leads
+
+# Migraciones DDL — alto riesgo (ALTER, DROP, CREATE TABLE)
+01_ddl/                             @D-M-Accesorios/leads @D-M-Accesorios/dba
+
+# Migraciones DML — riesgo medio (inserts, updates masivos)
+02_dml/                             @D-M-Accesorios/leads @D-M-Accesorios/dba
+
+# Control de acceso — máximo riesgo (roles, grants, RLS)
+03_dcl/                             @D-M-Accesorios/leads
+
+# Rollbacks — críticos para recuperación
+05_rollbacks/                       @D-M-Accesorios/leads
